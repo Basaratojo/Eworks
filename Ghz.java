@@ -1,11 +1,12 @@
 // library for the scannner 
 import java.util.Scanner;	
-
+import java.util.Arrays;
 
 
 public class Ghz {
 	public static void main(String[] args){
-	
+		System.out.println(Arrays.toString(args));
+
 		//Initialise a Scanner to road Fromm the commmand line
 		Scanner in = new Scanner(System.in);
 

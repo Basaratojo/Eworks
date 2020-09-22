@@ -35,9 +35,24 @@ public class Matrix {
         System.out.println("The second matrix is : ");
         printer(callFM2);
 
-        System.out.println("The result of the multiplication is equal to  ");
-        int [][] result= multiplication(callFM1,callFM2) ;
-        printer(result);
+        if(callFM1[0].length!= callFM2.length) {
+            System.out.println("this multiplication is not possible");
+            return ;
+        }
+
+        if (callFM1.length == 1 && callFM2[0].length == 1) {
+            System.out.println("The result of the multiplication is equal to  ");
+            int r = vectorMultiplication(callFM1,callFM2) ;
+            System.out.println(r);
+
+        }
+        else {
+
+
+            System.out.println("The result of the multiplication is equal to  ");
+            int [][] result= multiplication(callFM1,callFM2) ;
+            printer(result);
+        }
     }
     public static int[][] fillMatrix1 (int r1,int c1) {
 
@@ -64,12 +79,34 @@ public class Matrix {
         System.out.println();
 
     }
-    public static int[][] multiplication (int[][] m1,int[][] m2) {
-        int c[][]= new int [m1.length][m1[1].length];
+
+    public static int vectorMultiplication (int[][] m1, int[][] m2) {
+        int c = 0;
         for(int i=0; i<m1.length; i++) {
-            for(int j=0; j<m1[1].length; j++) {
+            for(int j=0; j<m2[0].length; j++) {
+                for(int k=0; k<m1[0].length ; k++)
+                {
+                    c += m1[i][k] * m2[k][j];
+
+
+                }
+            }
+
+        }
+        return c;
+
+    }
+
+
+    public static int[][] multiplication (int[][] m1,int[][] m2)
+    {
+        int c[][]= new int [m1.length][m2[0].length];
+        System.out.println("row m2[1].length "+ m2[0].length);
+        System.out.println("column m1.length "+ m1.length);
+        for(int i=0; i<m1.length; i++) {
+            for(int j=0; j<m2[0].length; j++) {
                 c[i][j] = 0;
-                for(int k=0; k<m1[1].length ; k++)
+                for(int k=0; k<m1[0].length ; k++)
                 {
                     c[i][j] += m1[i][k] * m2[k][j];
 
